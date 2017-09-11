@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gabble</title>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="/">Home</a> |
+                <a href="/" onclick="showLoginForm()" id="showLoginForm">Log in</a> |
+                <a href="/" onclick="showSignupForm()" id="showSignupForm">Sign up</a>
+            </nav>
+        </header>
+        <div id="loginForm" style="display: none">
+            <form class="login-form form" action="/login" method="POST">
+                <span class="header-row">
+                    <h3>Log in to Gabble</h3>
+                    <span id="close-x" class="fa fa-times" onclick="showLoginForm()"></span>
+                </span>
+                <span class="row">
+              <label for="username">Username</label>
+              <input type="text" name="username" placeholder="Username" required autocomplete="off">
+            </span>
+                <span class="row">
+              <label for="password">Password</label>
+              <input type="password" name="password" placeholder="Password" required>
+            </span>
+                <button class="login-button button" type="Submit">Log in</button>
+            </form>
+        </div>
+        <div id="signupForm" style="display: none">
+            <form class="signup-form form" action="/signup" method="post">
+                <span class="header-row">
+                    <h3>Sign up for Gabble</h3>
+                    <span id="close-x" class="fa fa-times" onclick="showSignupForm()"></span>
+                </span>
+                <label for="name">Full Name</label><input type="text" name="name" placeholder="Full Name" required>
+                <br>
+                <label for="username">Username</label><input type="text" name="username" placeholder="User Name" required>
+                <br>
+                <label for="password">Password</label><input type="password" name="password" placeholder="Password" required>
+                <br>
+                <button class="button signup-button" type="submit">Sign up</button>
+            </form>
+        </div>
+        <div class="filterposts">
+            <a href="/">All Posts</a>
+            <a href="/myposts">My Posts</a>
+        </div>
+
+        <main>
+            <section class="createGabSection">
+                <form class="gabform" action="/newgab" method=POST>
+                    <span class="">
+                        <textarea class="row" name="body" placeholder="&nbsp;What's happening?" required minlength="1" maxlength="140"></textarea>
+                    </span>
+                    <button class="button" type="submit">Gab</button>
+                    </span>
+                </form>
+            </section>
+            <section class="grid">
+                {{#snippet}}
+                <div class="grid-item" id="item_{{_id}}">
+                    <h2>{{language}} snippet: {{title}}</h2>
+                    <pre class="code-body">{{body}}</pre>
+                    <span class="code-cover" id="cover_{{_id}}">
+                </span>
+                    <span class="tag">{{tags}}</span>
+                    <span class="comment">{{comment}}</span>
+                    <p class="view-snippet" onclick="showFullSnippet()" data-id="{{_id}}">View Full Snippet</p>
+                </div>
+                {{/snippet}}
+            </section>
+        </main>
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="https://use.fontawesome.com/27763c6ae2.js"></script>
+</body>
+
+</html>
